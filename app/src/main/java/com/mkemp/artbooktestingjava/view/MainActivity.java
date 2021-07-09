@@ -1,6 +1,8 @@
-package com.mkemp.artbooktestingjava;
+package com.mkemp.artbooktestingjava.view;
 
 import android.os.Bundle;
+
+import com.mkemp.artbooktestingjava.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 
