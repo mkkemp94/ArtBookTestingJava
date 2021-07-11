@@ -3,8 +3,11 @@ package com.mkemp.artbooktestingjava.view;
 import android.os.Bundle;
 import android.view.View;
 
+import com.bumptech.glide.RequestManager;
 import com.mkemp.artbooktestingjava.R;
 import com.mkemp.artbooktestingjava.databinding.FragmentArtDetailsBinding;
+
+import javax.inject.Inject;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -15,11 +18,15 @@ import androidx.navigation.Navigation;
 
 public class ArtDetailsFragment extends Fragment
 {
+    private final RequestManager glide;
+
     private FragmentArtDetailsBinding fragmentBinding;
 
-    public ArtDetailsFragment()
+    @Inject
+    public ArtDetailsFragment(RequestManager glide)
     {
         super(R.layout.fragment_art_details);
+        this.glide = glide;
     }
 
     @Override
