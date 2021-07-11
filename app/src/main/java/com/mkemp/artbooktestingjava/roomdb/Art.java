@@ -1,18 +1,19 @@
 package com.mkemp.artbooktestingjava.roomdb;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "arts")
 public class Art
 {
-    private final String name;
-    private final String artistName;
-    private final int year;
-    private final String imageUrl;
+    private String name;
+    private String artistName;
+    private int year;
+    private String imageUrl;
 
     @PrimaryKey(autoGenerate = true)
-    private final int id;
+    private int id;
 
     public Art(String name, String artistName, int year, String imageUrl, int id)
     {
@@ -23,28 +24,12 @@ public class Art
         this.id = id;
     }
 
-    public String getName()
+    @Ignore
+    public Art(String name, String artistName, int year, String imageUrl)
     {
-        return name;
-    }
-
-    public String getArtistName()
-    {
-        return artistName;
-    }
-
-    public int getYear()
-    {
-        return year;
-    }
-
-    public String getImageUrl()
-    {
-        return imageUrl;
-    }
-
-    public int getId()
-    {
-        return id;
+        this.name = name;
+        this.artistName = artistName;
+        this.year = year;
+        this.imageUrl = imageUrl;
     }
 }

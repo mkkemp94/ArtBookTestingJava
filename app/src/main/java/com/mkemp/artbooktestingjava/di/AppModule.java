@@ -6,6 +6,9 @@ import com.mkemp.artbooktestingjava.api.RetrofitAPI;
 import com.mkemp.artbooktestingjava.roomdb.ArtDao;
 import com.mkemp.artbooktestingjava.roomdb.ArtDatabase;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import javax.inject.Singleton;
 
 import androidx.room.Room;
@@ -24,6 +27,13 @@ import static com.mkemp.artbooktestingjava.util.Util.BASE_URL;
 @InstallIn(ApplicationComponent.class)
 public class AppModule
 {
+    @Singleton
+    @Provides
+    public ExecutorService provideExecutorService()
+    {
+        return Executors.newFixedThreadPool(10);
+    }
+
     @Singleton
     @Provides
     public RoomDatabase.Builder<ArtDatabase> injectRoomDatabase(
