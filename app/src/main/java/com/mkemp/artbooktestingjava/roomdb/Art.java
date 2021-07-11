@@ -32,4 +32,24 @@ public class Art
         this.year = year;
         this.imageUrl = imageUrl;
     }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public String getArtistName()
+    {
+        return artistName;
+    }
+
+    public int getYear()
+    {
+        return year;
+    }
+
+    public String getImageUrl()
+    {
+        return imageUrl;
+    }
 }
