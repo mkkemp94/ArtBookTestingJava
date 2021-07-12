@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.mkemp.artbooktestingjava.R;
+import com.mkemp.artbooktestingjava.adapter.ArtRecyclerAdapter;
 import com.mkemp.artbooktestingjava.databinding.FragmentArtsBinding;
+
+import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,11 +16,15 @@ import androidx.navigation.Navigation;
 
 public class ArtFragment extends Fragment
 {
+    private final ArtRecyclerAdapter artRecyclerAdapter;
+
     private FragmentArtsBinding fragmentBinding;
 
-    public ArtFragment()
+    @Inject
+    public ArtFragment(ArtRecyclerAdapter artRecyclerAdapter)
     {
         super(R.layout.fragment_arts);
+        this.artRecyclerAdapter = artRecyclerAdapter;
     }
 
     @Override

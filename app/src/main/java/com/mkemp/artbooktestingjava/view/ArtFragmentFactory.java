@@ -1,6 +1,8 @@
 package com.mkemp.artbooktestingjava.view;
 
 import com.bumptech.glide.RequestManager;
+import com.mkemp.artbooktestingjava.adapter.ArtRecyclerAdapter;
+import com.mkemp.artbooktestingjava.adapter.ImageRecyclerAdapter;
 
 import javax.inject.Inject;
 
@@ -11,11 +13,17 @@ import androidx.fragment.app.FragmentFactory;
 public class ArtFragmentFactory extends FragmentFactory
 {
     private final RequestManager glide;
+    private final ArtRecyclerAdapter artRecyclerAdapter;
+    private final ImageRecyclerAdapter imageRecyclerAdapter;
 
     @Inject
-    public ArtFragmentFactory(RequestManager glide)
+    public ArtFragmentFactory(RequestManager glide,
+                              ArtRecyclerAdapter artRecyclerAdapter,
+                              ImageRecyclerAdapter imageRecyclerAdapter)
     {
         this.glide = glide;
+        this.artRecyclerAdapter = artRecyclerAdapter;
+        this.imageRecyclerAdapter = imageRecyclerAdapter;
     }
 
     @NonNull
@@ -26,6 +34,14 @@ public class ArtFragmentFactory extends FragmentFactory
         if (clazz == ArtDetailsFragment.class)
         {
             return new ArtDetailsFragment(glide);
+        }
+        else if (clazz == ArtFragment.class)
+        {
+            return new ArtFragment(artRecyclerAdapter);
+        }
+        else if (clazz == ImageApiFragment.class)
+        {
+            return new ImageApiFragment(imageRecyclerAdapter);
         }
         else
         {
