@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import com.bumptech.glide.RequestManager;
 import com.mkemp.artbooktestingjava.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -46,7 +45,7 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ImageRecyclerAdap
         @Override
         public boolean areContentsTheSame(@NonNull final String oldItem, @NonNull final String newItem)
         {
-            return oldItem == newItem;
+            return oldItem.equals(newItem);
         }
     };
 
@@ -54,8 +53,6 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ImageRecyclerAdap
     private final RequestManager glide;
 
     private OnItemClickListener onItemClickListener;
-
-    private List<String> images = new ArrayList<>();
 
     @Inject
     public ImageRecyclerAdapter(RequestManager glide)
@@ -91,7 +88,7 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ImageRecyclerAdap
     public void onBindViewHolder(@NonNull final ImageRecyclerAdapter.ImageViewHolder holder, final int position)
     {
         final ImageView imageView = holder.itemView.findViewById(R.id.singleArtImageView);
-        final String url = images.get(position);
+        final String url = getImages().get(position);
         glide.load(url).into(imageView);
         imageView.setOnClickListener(v ->
         {
@@ -105,6 +102,6 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ImageRecyclerAdap
     @Override
     public int getItemCount()
     {
-        return images.size();
+        return getImages().size();
     }
 }

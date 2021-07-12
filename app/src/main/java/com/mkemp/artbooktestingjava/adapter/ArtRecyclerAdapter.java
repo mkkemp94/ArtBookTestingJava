@@ -11,7 +11,6 @@ import com.bumptech.glide.RequestManager;
 import com.mkemp.artbooktestingjava.R;
 import com.mkemp.artbooktestingjava.roomdb.Art;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -50,8 +49,6 @@ public class ArtRecyclerAdapter extends RecyclerView.Adapter<ArtRecyclerAdapter.
     private final AsyncListDiffer<Art> recyclerListDiffer = new AsyncListDiffer<>(this, diffUtil);
     private final RequestManager glide;
 
-    private List<Art> arts = new ArrayList<>();
-
     @Inject
     public ArtRecyclerAdapter(RequestManager glide)
     {
@@ -84,9 +81,9 @@ public class ArtRecyclerAdapter extends RecyclerView.Adapter<ArtRecyclerAdapter.
         final TextView nameText = holder.itemView.findViewById(R.id.artRowNameText);
         final TextView artistNameText = holder.itemView.findViewById(R.id.artRowArtistNameText);
         final TextView yearText = holder.itemView.findViewById(R.id.artRowYearText);
-        final Art art = arts.get(position);
+        final Art art = getArts().get(position);
         nameText.setText("Name: " + art.getName());
-        artistNameText.setText("Artist nName: " + art.getArtistName());
+        artistNameText.setText("Artist Name: " + art.getArtistName());
         yearText.setText("Year: " + art.getYear());
         glide.load(art.getImageUrl()).into(imageView);
     }
@@ -94,6 +91,6 @@ public class ArtRecyclerAdapter extends RecyclerView.Adapter<ArtRecyclerAdapter.
     @Override
     public int getItemCount()
     {
-        return arts.size();
+        return getArts().size();
     }
 }

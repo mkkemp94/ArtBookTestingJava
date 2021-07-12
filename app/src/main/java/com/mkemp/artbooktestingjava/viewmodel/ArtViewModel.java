@@ -124,7 +124,7 @@ public class ArtViewModel extends ViewModel
         executor.execute(() ->
         {
             final Resource<ImageResponse> response = repository.searchImage(searchString);
-            images.setValue(response);
+            images.postValue(response);
         });
     }
 }
