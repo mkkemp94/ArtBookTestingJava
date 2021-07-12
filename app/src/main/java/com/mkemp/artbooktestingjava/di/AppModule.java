@@ -18,19 +18,18 @@ import java.util.concurrent.Executors;
 import javax.inject.Singleton;
 
 import androidx.room.Room;
-import androidx.room.RoomDatabase;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
-import dagger.hilt.android.components.ApplicationComponent;
 import dagger.hilt.android.qualifiers.ApplicationContext;
+import dagger.hilt.components.SingletonComponent;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.mkemp.artbooktestingjava.util.Util.BASE_URL;
 
 @Module
-@InstallIn(ApplicationComponent.class)
+@InstallIn(SingletonComponent.class)
 public class AppModule
 {
     @Singleton
@@ -42,11 +41,11 @@ public class AppModule
 
     @Singleton
     @Provides
-    public RoomDatabase.Builder<ArtDatabase> injectRoomDatabase(
+    public ArtDatabase injectRoomDatabase(
             @ApplicationContext Context context
     )
     {
-        return Room.databaseBuilder(context, ArtDatabase.class, "ArtBookDB");
+        return Room.databaseBuilder(context, ArtDatabase.class, "ArtBookDB").build();
     }
 
     @Singleton

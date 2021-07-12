@@ -41,7 +41,7 @@ public class ArtDetailsFragment extends Fragment
     {
         super.onViewCreated(view, savedInstanceState);
 
-        viewModel = new ViewModelProvider(this).get(ArtViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(ArtViewModel.class);
 
         final NavController navController = Navigation.findNavController(view);
 
