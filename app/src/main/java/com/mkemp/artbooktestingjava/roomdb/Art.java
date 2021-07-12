@@ -52,4 +52,9 @@ public class Art
     {
         return imageUrl;
     }
+
+    public int getId()
+    {
+        return id;
+    }
 }

@@ -80,7 +80,7 @@ public class ArtRecyclerAdapter extends RecyclerView.Adapter<ArtRecyclerAdapter.
     @Override
     public void onBindViewHolder(@NonNull final ArtViewHolder holder, final int position)
     {
-        final ImageView imageView = holder.itemView.findViewById(R.id.artImageView);
+        final ImageView imageView = holder.itemView.findViewById(R.id.artRowImageView);
         final TextView nameText = holder.itemView.findViewById(R.id.artRowNameText);
         final TextView artistNameText = holder.itemView.findViewById(R.id.artRowArtistNameText);
         final TextView yearText = holder.itemView.findViewById(R.id.artRowYearText);

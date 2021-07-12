@@ -1,6 +1,7 @@
 package com.mkemp.artbooktestingjava.view;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import com.mkemp.artbooktestingjava.R;
 
@@ -21,5 +22,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         getSupportFragmentManager().setFragmentFactory(fragmentFactory);
         setContentView(R.layout.activity_main);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
 }

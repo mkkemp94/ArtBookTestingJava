@@ -2,7 +2,13 @@ package com.mkemp.artbooktestingjava.di;
 
 import android.content.Context;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.request.RequestOptions;
+import com.mkemp.artbooktestingjava.R;
 import com.mkemp.artbooktestingjava.api.RetrofitAPI;
+import com.mkemp.artbooktestingjava.repo.ArtRepository;
+import com.mkemp.artbooktestingjava.repo.ArtRepositoryInterface;
 import com.mkemp.artbooktestingjava.roomdb.ArtDao;
 import com.mkemp.artbooktestingjava.roomdb.ArtDatabase;
 
@@ -59,5 +65,24 @@ public class AppModule
                 .baseUrl(BASE_URL)
                 .build()
                 .create(RetrofitAPI.class);
+    }
+
+    @Singleton
+    @Provides
+    public ArtRepositoryInterface injectNormalRepo(ArtDao artDao, RetrofitAPI retrofitAPI)
+    {
+        return new ArtRepository(artDao, retrofitAPI);
+    }
+
+    @Singleton
+    @Provides
+    public RequestManager injectGlide(@ApplicationContext Context context)
+    {
+        return Glide.with(context)
+                .setDefaultRequestOptions(
+                        new RequestOptions()
+                                .placeholder(R.drawable.ic_launcher_foreground)
+                                .error(R.drawable.ic_launcher_foreground)
+                );
     }
 }

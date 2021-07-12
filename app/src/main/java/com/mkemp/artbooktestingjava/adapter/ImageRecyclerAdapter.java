@@ -8,7 +8,6 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.RequestManager;
 import com.mkemp.artbooktestingjava.R;
-import com.mkemp.artbooktestingjava.roomdb.Art;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ImageRecyclerAdapter extends RecyclerView.Adapter<ImageRecyclerAdapter.ImageViewHolder>
 {
-    interface OnItemClickListener extends View.OnClickListener
+    public interface OnItemClickListener
     {
-        void onItemClick(final int position);
+        void onItemClick(final String imageUrl);
     }
 
     public static class ImageViewHolder extends RecyclerView.ViewHolder
@@ -35,23 +34,23 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ImageRecyclerAdap
         }
     }
 
-    private final DiffUtil.ItemCallback<Art> diffUtil = new DiffUtil.ItemCallback<Art>()
+    private final DiffUtil.ItemCallback<String> diffUtil = new DiffUtil.ItemCallback<String>()
     {
         @Override
-        public boolean areItemsTheSame(@NonNull final Art oldItem, @NonNull final Art newItem)
+        public boolean areItemsTheSame(@NonNull final String oldItem, @NonNull final String newItem)
         {
             return oldItem == newItem;
         }
 
         @SuppressLint("DiffUtilEquals")
         @Override
-        public boolean areContentsTheSame(@NonNull final Art oldItem, @NonNull final Art newItem)
+        public boolean areContentsTheSame(@NonNull final String oldItem, @NonNull final String newItem)
         {
             return oldItem == newItem;
         }
     };
 
-    private final AsyncListDiffer<Art> recyclerListDiffer = new AsyncListDiffer<>(this, diffUtil);
+    private final AsyncListDiffer<String> recyclerListDiffer = new AsyncListDiffer<>(this, diffUtil);
     private final RequestManager glide;
 
     private OnItemClickListener onItemClickListener;
@@ -64,12 +63,12 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ImageRecyclerAdap
         this.glide = glide;
     }
 
-    public List<Art> getImages()
+    public List<String> getImages()
     {
         return recyclerListDiffer.getCurrentList();
     }
 
-    public void setImages(List<Art> value)
+    public void setImages(List<String> value)
     {
         recyclerListDiffer.submitList(value);
     }
@@ -98,7 +97,7 @@ public class ImageRecyclerAdapter extends RecyclerView.Adapter<ImageRecyclerAdap
         {
             if (onItemClickListener != null)
             {
-                onItemClickListener.onItemClick(position);
+                onItemClickListener.onItemClick(url);
             }
         });
     }
