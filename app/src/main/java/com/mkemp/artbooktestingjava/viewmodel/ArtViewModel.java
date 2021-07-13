@@ -101,11 +101,12 @@ public class ArtViewModel extends ViewModel
             return;
         }
 
+        final String selectedImageUrl = selectedImage.getValue();
         final Art art = new Art(
                 name,
                 artistName,
                 yearInt,
-                selectedImage.getValue() == null ? "" : selectedImage.getValue()
+                selectedImageUrl == null ? "" : selectedImageUrl
         );
 
         insertArt(art);
